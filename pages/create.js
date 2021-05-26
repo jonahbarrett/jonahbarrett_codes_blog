@@ -1,16 +1,17 @@
-import { useState } from 'react';
-import { useRouter } from 'next/router'; // this is new
-import { createPost } from '@lib/firebase'; // this is new
-import styles from '@styles/create.module.scss';
+import { useState } from "react";
+import { useRouter } from "next/router"; // this is new
+import { createPost } from "@lib/firebase"; // this is new
+import { Layout } from "@components";
+import styles from "@styles/create.module.scss";
 
 const CreatePage = () => {
   const router = useRouter(); // this is new
   const [formValues, setFormValues] = useState({
-    title: '',
-    slug: '',
-    coverImage: '',
-    coverImageAlt: '',
-    content: '',
+    title: "",
+    slug: "",
+    coverImage: "",
+    coverImageAlt: "",
+    content: "",
   });
   const [isLoading, setIsLoading] = useState(false); // this is new
 
@@ -48,7 +49,7 @@ const CreatePage = () => {
 
     // Alert and prevent the post from being created if there are missing values.
     if (missingValues.length > 1) {
-      alert(`You're missing these fields: ${missingValues.join(', ')}`);
+      alert(`You're missing these fields: ${missingValues.join(", ")}`);
       return;
     }
 
@@ -60,7 +61,7 @@ const CreatePage = () => {
       .then(() => {
         // Update the isLoading state and navigate to the home page.
         setIsLoading(false);
-        router.push('/');
+        router.push("/");
       })
       .catch((err) => {
         // Alert the error and update the isLoading state.
@@ -70,58 +71,60 @@ const CreatePage = () => {
   };
 
   return (
-    <div className={styles.CreatePage}>
-      <form onSubmit={handleSubmit}>
-        <h1>Create a new post</h1>
-        <div>
-          <label htmlFor="title">Title</label>
-          <input
-            id="title"
-            type="text"
-            value={formValues.title}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="slug">Slug</label>
-          <input
-            id="slug"
-            type="text"
-            value={formValues.slug}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="coverImage">Cover Image URL</label>
-          <input
-            id="coverImage"
-            type="text"
-            value={formValues.coverImage}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="coverImageAlt">Cover Image Alt</label>
-          <input
-            id="coverImageAlt"
-            type="text"
-            value={formValues.coverImageAlt}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="content">Content</label>
-          <textarea
-            id="content"
-            value={formValues.content}
-            onChange={handleChange}
-          />
-        </div>
-        <button type="submit" disabled={isLoading}>
-          {isLoading ? 'Creating...' : 'Create'}
-        </button>
-      </form>
-    </div>
+    <Layout>
+      <div className={styles.CreatePage}>
+        <form onSubmit={handleSubmit}>
+          <h1>Create a new post</h1>
+          <div>
+            <label htmlFor="title">Title</label>
+            <input
+              id="title"
+              type="text"
+              value={formValues.title}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="slug">Slug</label>
+            <input
+              id="slug"
+              type="text"
+              value={formValues.slug}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="coverImage">Cover Image URL</label>
+            <input
+              id="coverImage"
+              type="text"
+              value={formValues.coverImage}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="coverImageAlt">Cover Image Alt</label>
+            <input
+              id="coverImageAlt"
+              type="text"
+              value={formValues.coverImageAlt}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="content">Content</label>
+            <textarea
+              id="content"
+              value={formValues.content}
+              onChange={handleChange}
+            />
+          </div>
+          <button type="submit" disabled={isLoading}>
+            {isLoading ? "Creating..." : "Create"}
+          </button>
+        </form>
+      </div>
+    </Layout>
   );
 };
 
