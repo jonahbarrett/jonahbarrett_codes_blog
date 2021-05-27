@@ -1,19 +1,30 @@
 .PostPage {
-    img {
-      max-width: 100%;
-      border-radius: 12px;
-      border: 1px solid black;
-    }
-  
-    h1 {
-      margin-top: 20px;
-      margin-bottom: 8px;
-    }
-  
+  img {
+    max-width: 100%;
+    border-radius: 12px;
+    border: 1px solid black;
+  }
+
+  h1 {
+    margin-top: 20px;
+    margin-bottom: 8px;
+  }
+
+  & > div {
+    display: flex;
+    margin: 0;
+    justify-content: space-between;
+
     a {
-      display: block;
       padding: 8px;
       color: black;
     }
+
+    button {
+      background: transparent;
+      box-shadow: none;
+      border: none;
+      color: black;
+    }
   }
-  
+}
